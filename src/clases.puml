@@ -1,0 +1,75 @@
+@startuml
+
+left to right direction
+
+interface Menu{
++agregarIns(codigo: String, precio: int, stock: int, material: String, tipoInst: String, tipoCuerda: String, numeroDeCuerdas: int, tipo: String): void
++venderIns(codigo: String, precio: int, stock: int): void
++consultarInv(codigo: String, precio: int, stock: int, material: String, tipoInst: String, tipoCuerda: String, numeroDeCuerdas: int, tipo: String): void
++cierre(): void
+
+}
+
+entity MenuImpl{
++MenuImpl()
+}
+
+abstract Instrumento{
+-codigo: String
+-precio: int
+-stock: int
+-material: String
+-tipoInst: String
+
++Instrumento(codigo: String, precio: int, stock: int, material: String, tipoInst: String):
++getCodigo(codigo: String): String
++getPrecio(precio: int): int
++getStock(stock: int): int
++getMaterial(material: String): String
++getTipoInst(tipoInst: String): String
+}
+
+entity Cuerda{
+-tipoCuerda: String
+-numeroDeCuerdas: int
+-tipo: String
+
++Cuerda(tipoInst: String, numeroDeCuerdas: int,  tipo: String):
++getTipoCuerda(tipoInst: String): String
++getNumeroDeCuerdas(numeroDeCuerdas: int): int
++getTipo(tipo: String): String
+}
+entity Viento{
+
++Viento(codigo: String, precio: int, stock: int, material: String, tipoInst: String):
+}
+entity Percusion{
+-tipoPercusion: String
+-altura: boolean
+
++Percusion(codigo: String, precio: int, stock: int, material: String, tipoInst: String, tipoPercusion: String, altura: boolean):
++getTipoPercusion(tipoPercusion: String): String
++getAltura(altura: boolean): boolean
+}
+
+entity ListaInstrumento{
+-ListaInstrumento: Instrumento[]
+-cantMax: int
+-cantMin: int
+
++ListaInstrumento(cantMax):
++getCantAct(cantAct: int): int
++getCantMax(cantMax: int): int
++agregarIns(Instrumento i):
++consultarInv():
++leerArchivo(nombreArchivo: String): String
+}
+
+Instrumento<|--Cuerda
+Instrumento<|--Viento
+Instrumento<|--Percusion
+Instrumento --o ListaInstrumento
+MenuImpl .> Menu: implements
+ListaInstrumento --> MenuImpl
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+
+abstract Instrumento{
+codigo
+precio
+stock
+material
+tipo de instrumento
+}
+
+entity Cuerda{
+tipo de cuerda
+numero de cuerdas
+tipo
+}
+
+entity Viento{
+}
+
+entity Percusion{
+tipo de percusion
+altura
+}
+
+
+Instrumento"1"-->"1"Cuerda: puede ser de
+Instrumento"1"-->"1"Viento: puede ser de
+Instrumento"1"-->"1"Percusion: puede ser de
+
+
+@enduml
